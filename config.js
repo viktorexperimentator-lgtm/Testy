@@ -8,7 +8,7 @@ const CONFIG = {
   },
   nback: {
     trialTrials: 20, // Počet trialov v trial verzii (Jaeggi et al., 2010: 20+n stimuli per block)
-    realTrials: 25, // Počet trialov v real verzii (standard is 20-25 per block)
+    realTrials: 26, // Počet trialov v real verzii (standard is 20-25 per block)
     matchCount: 8, // Počet match možností (~30% match rate, Jaeggi et al., 2010)
     letterDisplayTime: 500, // Čas zobrazenia písmena v ms (Jaeggi et al., 2010)
     blankScreenTime: 2000, // Čas blank screen medzi písmenami v ms (Jaeggi et al., 2010: ISI = 2500ms)
@@ -20,5 +20,5 @@ const CONFIG = {
   inputLag: 0,
   // URL pre post-test formulár (zobrazí sa po dokončení testov)
   postTestFormUrl:
-    "https://www.facebook.com/photo/?fbid=179567988884188&set=pob.100004929637924&locale=sk_SK",
+    "https://docs.google.com/forms/d/e/1FAIpQLSdc-I2TjDVgtICCQIFcvPHhHC1394k0QdX4JNO6frzkOB64yw/viewform?usp=header",
 };
