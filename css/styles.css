@@ -1,0 +1,234 @@
+/* Custom styles for cognitive testing app */
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Trial indicator - subtle, top left */
+.trial-indicator {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  color: #666666;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Focus styles for accessibility */
+input:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Glassmorphism effect */
+.glass-container {
+  background: rgba(17, 24, 39, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: rgba(37, 99, 235, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.glass-button:hover {
+  background: rgba(37, 99, 235, 0.8);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 16px 0 rgba(37, 99, 235, 0.4);
+}
+
+/* Error/damage effect - red flash on sides */
+.error-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  animation: errorFlash 0.3s ease-out;
+}
+
+.error-flash::before,
+.error-flash::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  background: linear-gradient(
+    to right,
+    rgba(239, 68, 68, 0.8),
+    rgba(239, 68, 68, 0.4),
+    transparent
+  );
+  animation: errorFlash 0.3s ease-out;
+}
+
+.error-flash::before {
+  left: 0;
+}
+
+.error-flash::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(239, 68, 68, 0.8),
+    rgba(239, 68, 68, 0.4),
+    transparent
+  );
+}
+
+@keyframes errorFlash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Success/damage effect - green flash on sides */
+.success-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  animation: successFlash 0.3s ease-out;
+}
+
+.success-flash::before,
+.success-flash::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  background: linear-gradient(
+    to right,
+    rgba(34, 197, 94, 0.8),
+    rgba(34, 197, 94, 0.4),
+    transparent
+  );
+  animation: successFlash 0.3s ease-out;
+}
+
+.success-flash::before {
+  left: 0;
+}
+
+.success-flash::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(34, 197, 94, 0.8),
+    rgba(34, 197, 94, 0.4),
+    transparent
+  );
+}
+
+@keyframes successFlash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Tooltip styles */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: rgba(107, 114, 128, 0.5);
+  color: #9ca3af;
+  font-size: 11px;
+  cursor: help;
+  transition: all 0.2s ease;
+}
+
+.tooltip-icon:hover {
+  background: rgba(107, 114, 128, 0.8);
+  color: #ffffff;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: normal;
+  width: 250px;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(17, 24, 39, 0.95);
+}
+
+.tooltip-container:hover .tooltip-content {
+  opacity: 1;
+  pointer-events: auto;
+}
