@@ -1,4 +1,4 @@
-// N-back test (2-back) implementation
+// N-back test (3-back) implementation
 class NBack {
   constructor(subjectId, onComplete) {
     this.subjectId = subjectId;
@@ -26,7 +26,7 @@ class NBack {
       "S",
       "T",
     ];
-    this.n = 2; // 2-back task
+    this.n = 3; // 3-back task
     this.letterHistory = []; // Track last n letters
   }
 
@@ -89,7 +89,7 @@ class NBack {
               </p>
               <p class="text-lg leading-relaxed">
                 <strong>Vaša úloha:</strong> Stlačte <span class="bg-gray-800/50 px-2 py-1 rounded backdrop-blur-sm">M</span> 
-                keď sa aktuálne písmeno <strong>zhoduje s písmenom, ktoré ste videli pred 2 pozíciami</strong>.
+                keď sa aktuálne písmeno <strong>zhoduje s písmenom, ktoré ste videli pred 3 pozíciami</strong>.
               </p>
               <p class="text-lg leading-relaxed">
                 Ak sa písmená nezhodujú, <strong>NESTLÁČAJTE</strong> nič.
@@ -98,8 +98,8 @@ class NBack {
                 Dôležitá je <strong>rýchlosť</strong> aj <strong>presnosť</strong> vašich odpovedí.
               </p>
               <p class="text-lg leading-relaxed text-gray-400 mt-6">
-                <strong>Príklad:</strong> Ak vidíte sekvenciu A, B, C, B - stlačte M pri druhom B, 
-                pretože B sa zhoduje s B pred 2 pozíciami.
+                <strong>Príklad:</strong> Ak vidíte sekvenciu A, B, C, A - stlačte M pri druhom A, 
+                pretože A sa zhoduje s A pred 3 pozíciami.
               </p>
               <div class="mt-8 text-center">
                 <button
@@ -172,6 +172,7 @@ class NBack {
       const letter = allLetters[i];
       const nback1 = i >= 1 ? allLetters[i - 1] : null;
       const nback2 = i >= 2 ? allLetters[i - 2] : null;
+      const nback3 = i >= 3 ? allLetters[i - 3] : null;
       const isMatch = i >= this.n && letter === allLetters[i - this.n];
 
       trials.push({
@@ -180,6 +181,7 @@ class NBack {
         trialNumber: i + 1,
         nback1: nback1,
         nback2: nback2,
+        nback3: nback3,
       });
     }
 
@@ -259,13 +261,14 @@ class NBack {
         ? '<div class="trial-indicator">Trial</div>'
         : "";
 
-      // Show letter
+      // Show letter (randomly lower/uppercase for display only)
+      const displayLetter = Math.random() < 0.5 ? trial.letter.toLowerCase() : trial.letter;
       container.innerHTML = `
         ${indicator}
         <div class="min-h-screen flex items-center justify-center bg-black text-white">
           <div class="text-center">
             <div style="font-size: 120pt; font-weight: 300; letter-spacing: 0.1em;">
-              ${trial.letter}
+              ${displayLetter}
             </div>
           </div>
         </div>
@@ -299,7 +302,7 @@ class NBack {
 
           // Console log for debugging
           console.log(
-            `[N-back] Trial ${trial.trialNumber}: Letter = ${trial.letter}, M pressed = true, isMatch = ${trial.isMatch}, nback2 = ${trial.nback2}, isCorrect = ${isCorrect}`,
+            `[N-back] Trial ${trial.trialNumber}: Letter = ${trial.letter}, M pressed = true, isMatch = ${trial.isMatch}, nback3 = ${trial.nback3}, isCorrect = ${isCorrect}`,
           );
 
           // Show appropriate effect
@@ -311,7 +314,7 @@ class NBack {
             errorOccurred = true;
             this.showErrorEffect(container);
             console.log(
-              `[N-back] ERROR: Pressed M but this is NOT a match! Current: ${trial.letter}, 2-back: ${trial.nback2}`,
+              `[N-back] ERROR: Pressed M but this is NOT a match! Current: ${trial.letter}, 3-back: ${trial.nback3}`,
             );
           }
 
@@ -377,13 +380,13 @@ class NBack {
           if (!responseRecorded) {
             const isCorrect = !trial.isMatch; // Correct if no response on non-match
             console.log(
-              `[N-back] Trial ${trial.trialNumber}: Letter = ${trial.letter}, M pressed = false, isMatch = ${trial.isMatch}, nback2 = ${trial.nback2}, isCorrect = ${isCorrect}`,
+              `[N-back] Trial ${trial.trialNumber}: Letter = ${trial.letter}, M pressed = false, isMatch = ${trial.isMatch}, nback3 = ${trial.nback3}, isCorrect = ${isCorrect}`,
             );
             if (trial.isMatch) {
               errorOccurred = true;
               this.showErrorEffect(container);
               console.log(
-                `[N-back] ERROR: Did NOT press M but this WAS a match! Current: ${trial.letter}, 2-back: ${trial.nback2}`,
+                `[N-back] ERROR: Did NOT press M but this WAS a match! Current: ${trial.letter}, 3-back: ${trial.nback3}`,
               );
             }
             this.recordResponse(trial, blockNumber, false, null);
@@ -441,6 +444,7 @@ class NBack {
       currentLetter: letterToNumber(trial.letter),
       nback1: letterToNumber(trial.nback1),
       nback2: letterToNumber(trial.nback2),
+      nback3: letterToNumber(trial.nback3),
       isMatch: trial.isMatch ? 1 : 0,
       response: responded ? 1 : 0,
       responseOutcome: isCorrect ? 1 : 0,
