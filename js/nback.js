@@ -10,21 +10,16 @@ class NBack {
     this.responseStartTime = null;
     this.waitingForResponse = false;
     this.letters = [
-      "A",
       "B",
-      "C",
-      "D",
-      "E",
-      "H",
-      "I",
+      "F",
       "K",
-      "L",
+      "H",
       "M",
-      "O",
-      "P",
+      "Q",
       "R",
-      "S",
+      "X",
       "T",
+      "V",
     ];
     this.n = 3; // 3-back task
     this.letterHistory = []; // Track last n letters
@@ -262,7 +257,7 @@ class NBack {
         : "";
 
       // Show letter (randomly lower/uppercase for display only)
-      const displayLetter = Math.random() < 0.5 ? trial.letter.toLowerCase() : trial.letter;
+      const displayLetter = trial.letter;
       container.innerHTML = `
         ${indicator}
         <div class="min-h-screen flex items-center justify-center bg-black text-white">
