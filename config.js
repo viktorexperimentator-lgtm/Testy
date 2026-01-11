@@ -7,9 +7,9 @@ const CONFIG = {
     maskTime: 900, // Čas zobrazenia masky v ms (Robertson et al., 1997)
   },
   nback: {
-    trialTrials: 20, // Počet trialov v trial verzii (Jaeggi et al., 2010: 20+n stimuli per block)
-    realTrials: 26, // Počet trialov v real verzii (standard is 20-25 per block)
-    matchCount: 8, // Počet match možností (~30% match rate, Jaeggi et al., 2010)
+    trialTrials: 25, // Počet trialov v trial verzii (Jaeggi et al., 2010: 20+n stimuli per block)
+    realTrials: 45, // Počet trialov v real verzii (standard is 20-25 per block)
+    matchCount: 14, // Počet match možností (~30% match rate, Jaeggi et al., 2010)
     letterDisplayTime: 500, // Čas zobrazenia písmena v ms (Jaeggi et al., 2010)
     blankScreenTime: 2000, // Čas blank screen medzi písmenami v ms (Jaeggi et al., 2010: ISI = 2500ms)
   },
