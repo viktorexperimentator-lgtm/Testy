@@ -20,5 +20,5 @@ const CONFIG = {
   inputLag: 0,
   // URL pre post-test formulár (zobrazí sa po dokončení testov)
   postTestFormUrl:
-    "https://docs.google.com/forms/d/e/1FAIpQLSdc-I2TjDVgtICCQIFcvPHhHC1394k0QdX4JNO6frzkOB64yw/viewform?usp=header",
+    "https://forms.gle/9TYCneV1ZRuEPDWS8",
 };
